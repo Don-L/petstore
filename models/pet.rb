@@ -21,20 +21,23 @@ class Pet
     return result
   end
 
-  def update(name, type, favourite_film, store_id) 
+  def update(hash)  #enter hash = {options[key] => new_value}
     sql = "UPDATE pets
-          SET name = '#{name}',
-          type = '#{type}',
-          favourite_film = '#{favourite_film}',
-          store_id = #{store_id}
+          SET #{hash.keys[0]} = '#{hash.values[0]}'
           WHERE id = #{@id}"
     SqlRunner.run(sql)
   end
 
-  def delete()  #works!
+  def self.delete_all
+    sql = "DELETE FROM pets"
+    SqlRunner.run(sql)
+  end
+
+  def delete() 
     sql = "DELETE FROM pets WHERE id = #{@id}"
     SqlRunner.run(sql)
   end
+
 
   def self.all()
     sql = "SELECT * FROM pets"

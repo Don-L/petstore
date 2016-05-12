@@ -27,12 +27,15 @@ class Store
     return result
   end
 
-  def update(name, address, stock_type)
+  def update(hash)  #enter hash = {options[key] => new_value}
     sql = "UPDATE stores
-          SET name = '#{name}',
-          address = '#{address}',
-          stock_type = '#{stock_type}'
+          SET #{hash.keys[0]} = '#{hash.values[0]}'
           WHERE id = #{@id}"
+    SqlRunner.run(sql)
+  end
+
+  def self.delete_all
+    sql = "DELETE FROM stores"
     SqlRunner.run(sql)
   end
 

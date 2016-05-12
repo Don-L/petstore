@@ -1,3 +1,6 @@
+DROP TABLE pets;
+DROP TABLE stores;
+
 CREATE TABLE stores (
   id serial4 primary key,
   name VARCHAR(255),
@@ -10,5 +13,5 @@ CREATE TABLE pets (
   name VARCHAR(255),
   type VARCHAR(255),
   favourite_film VARCHAR(255),
-  store_id INT4 references stores(id)
+  store_id INT4 references stores(id) ON DELETE CASCADE
 );
