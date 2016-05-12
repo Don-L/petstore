@@ -21,12 +21,12 @@ class Pet
     return result
   end
 
-  def update() 
+  def update(name, type, favourite_film, store_id) 
     sql = "UPDATE pets
-          SET name = '#{@name}',
-          type = '#{@type}',
-          favourite_film = '#{@favourite_film}',
-          store_id = #{@store_id}
+          SET name = '#{name}',
+          type = '#{type}',
+          favourite_film = '#{favourite_film}',
+          store_id = #{store_id}
           WHERE id = #{@id}"
     SqlRunner.run(sql)
   end

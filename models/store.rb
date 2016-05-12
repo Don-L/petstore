@@ -20,11 +20,18 @@ class Store
     return result
   end
 
-  def update()
+  def self.find(id) 
+    sql = "SELECT * FROM stores WHERE id = #{id}"
+    store = SqlRunner.run(sql).first
+    result = Store.new(store)
+    return result
+  end
+
+  def update(name, address, stock_type)
     sql = "UPDATE stores
-          SET name = '#{@name}',
-          address = '#{@address}',
-          stock_type = '#{@stock_type}'
+          SET name = '#{name}',
+          address = '#{address}',
+          stock_type = '#{stock_type}'
           WHERE id = #{@id}"
     SqlRunner.run(sql)
   end
